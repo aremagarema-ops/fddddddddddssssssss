@@ -40,7 +40,7 @@ export function CompetitionHeader() {
         {/* Description */}
         <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-medium">
           ابحث عن نتيجتك في مسابقة القرآن الكريم بمناسبة المولد النبوي الشريف 📖✨
-        </div>
+        </p>
         
         {/* Success criteria */}
         <div className="mt-6 p-4 rounded-xl bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 max-w-lg mx-auto">
