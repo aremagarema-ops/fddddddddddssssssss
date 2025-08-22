@@ -20,7 +20,8 @@ const SearchInput = React.forwardRef<
   }
 
   const handleButtonClick = () => {
-    if (value.trim().length >= 2) {
+    const words = value.trim().split(' ').filter(word => word.length > 0)
+    if (words.length >= 2) {
       onSearch?.(value)
       onButtonClick?.()
     }
@@ -51,7 +52,7 @@ const SearchInput = React.forwardRef<
       </div>
       <Button
         onClick={handleButtonClick}
-        disabled={value.trim().length < 2 || isLoading}
+        disabled={value.trim().split(' ').filter(word => word.length > 0).length < 2 || isLoading}
         variant="islamic"
         size="lg"
         className="h-12 px-6 rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300"

@@ -25,6 +25,12 @@ export function SearchSection() {
       // تنظيف النص المدخل وإزالة المسافات الزائدة
       const cleanSearchTerm = searchTerm.trim()
       
+      // التحقق من وجود اسمين على الأقل
+      const words = cleanSearchTerm.split(' ').filter(word => word.length > 0)
+      if (words.length < 2) {
+        throw new Error('يجب إدخال الاسم الأول والثاني على الأقل')
+      }
+      
       // البحث بطرق متعددة لضمان العثور على النتائج
       const { data, error } = await supabase
         .from('results')
@@ -50,7 +56,7 @@ export function SearchSection() {
       if (error) throw error
       return data as Result[]
     },
-    enabled: searchTerm.trim().length >= 2 && shouldSearch
+    enabled: searchTerm.trim().split(' ').filter(word => word.length > 0).length >= 2 && shouldSearch
   })
 
   const handleSearch = (term: string) => {
@@ -63,13 +69,13 @@ export function SearchSection() {
       {/* Search Input */}
       <div className="mb-8">
         <SearchInput
-          placeholder="ادخل اسمك للبحث عن النتيجة (حد أدنى حرفين)..."
+          placeholder="ادخل الاسم الأول والثاني للبحث عن النتيجة..."
           onSearch={handleSearch}
           isLoading={isLoading}
           className="text-lg"
         />
         <p className="text-sm text-muted-foreground mt-2 text-center">
-          يرجى كتابة الاسم بحد أدنى حرفين للبحث
+          يرجى كتابة الاسم الأول والثاني على الأقل للبحث
         </p>
       </div>
 
@@ -92,6 +98,15 @@ export function SearchSection() {
             <div className="text-center">
               <SearchX className="h-8 w-8 text-destructive mx-auto mb-4" />
               <p className="text-destructive mb-2">حدث خطأ في البحث</p>
+              {error?.message === 'يجب إدخال الاسم الأول والثاني على الأقل' ? (
+                <p className="text-sm text-muted-foreground mb-3">
+                  {error.message}
+                </p>
+              ) : (
+                <p className="text-sm text-muted-foreground mb-3">
+                  حدث خطأ غير متوقع في النظام
+                </p>
+              )}
               <p className="text-sm text-muted-foreground">
                 للتواصل والمساعدة: 
                 <a 
@@ -116,10 +131,10 @@ export function SearchSection() {
               <SearchX className="h-8 w-8 text-warning mx-auto mb-4" />
               <p className="text-warning-foreground mb-2">لم يتم العثور على نتائج</p>
               <p className="text-sm text-muted-foreground mb-3">
-                تأكد من كتابة الاسم بشكل صحيح
+                تأكد من كتابة الاسم الأول والثاني بشكل صحيح
               </p>
               <p className="text-sm text-muted-foreground">
-                للاستفسار والمساعدة: 
+                إذا كنت غير راضٍ عن النتيجة أو تحتاج مساعدة: 
                 <a 
                   href="https://wa.me/201559181558" 
                   target="_blank" 
@@ -157,15 +172,15 @@ export function SearchSection() {
               <div className="p-4 rounded-full bg-gradient-golden text-accent-foreground mx-auto mb-4 w-fit animate-float">
                 <SearchX className="h-8 w-8" />
               </div>
-              <p className="text-muted-foreground text-lg font-medium mb-2">
-                ابدأ بكتابة اسمك للبحث عن النتيجة
+              <p className="text-muted-foreground text-lg font-medium mb-4">
+                ابدأ بكتابة الاسم الأول والثاني للبحث عن النتيجة
               </p>
               <p className="text-sm text-muted-foreground mt-2">
                 ✅ النجاح من 90 درجة فما فوق<br/>
                 ❌ أقل من 90 درجة يعتبر رسوب
               </p>
               <p className="text-xs text-muted-foreground mt-3">
-                للمساعدة والاستفسار: 
+                للمساعدة أو الاستفسار أو إذا كنت غير راضٍ عن النتيجة: 
                 <a 
                   href="https://wa.me/201559181558" 
                   target="_blank" 
