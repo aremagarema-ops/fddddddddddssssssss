@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Islamic-inspired background gradients */
+    --background: 210 30% 98%;
+    --foreground: 158 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 158 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 158 20% 15%;
+
+    /* Deep forest green - Islamic color */
+    --primary: 158 60% 25%;
+    --primary-foreground: 0 0% 98%;
+    
+    /* Light green for secondary */
+    --secondary: 158 25% 92%;
+    --secondary-foreground: 158 60% 25%;
+
+    /* Muted green tones */
+    --muted: 158 15% 95%;
+    --muted-foreground: 158 10% 45%;
+
+    /* Golden accent - Islamic accent */
+    --accent: 45 85% 55%;
+    --accent-foreground: 158 60% 15%;
+
+    /* Soft red for errors */
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 98%;
+
+    /* Subtle borders */
+    --border: 158 20% 85%;
+    --input: 158 20% 90%;
+    --ring: 158 60% 25%;
+
+    /* Success color - bright green */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 98%;
+    
+    /* Warning color - golden yellow */
+    --warning: 45 93% 47%;
+    --warning-foreground: 45 20% 15%;
+
+    /* Islamic-inspired gradients */
+    --gradient-islamic: linear-gradient(135deg, hsl(158 60% 25%), hsl(158 45% 35%));
+    --gradient-golden: linear-gradient(135deg, hsl(45 85% 55%), hsl(45 75% 65%));
+    --gradient-success: linear-gradient(135deg, hsl(142 76% 36%), hsl(142 60% 45%));
+    --gradient-bg: linear-gradient(180deg, hsl(210 30% 98%), hsl(158 15% 96%));
+    
+    /* Beautiful shadows */
+    --shadow-islamic: 0 10px 30px -10px hsl(158 60% 25% / 0.3);
+    --shadow-golden: 0 8px 25px -8px hsl(45 85% 55% / 0.4);
+    --shadow-success: 0 8px 25px -8px hsl(142 76% 36% / 0.3);
+    
+    /* Elegant transitions */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 158 25% 8%;
+    --foreground: 158 15% 90%;
+
+    --card: 158 20% 12%;
+    --card-foreground: 158 15% 90%;
+
+    --popover: 158 20% 12%;
+    --popover-foreground: 158 15% 90%;
+
+    --primary: 158 45% 65%;
+    --primary-foreground: 158 25% 8%;
+
+    --secondary: 158 15% 18%;
+    --secondary-foreground: 158 45% 65%;
+
+    --muted: 158 10% 15%;
+    --muted-foreground: 158 15% 65%;
+
+    --accent: 45 85% 65%;
+    --accent-foreground: 158 25% 8%;
+
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 158 15% 90%;
+
+    --border: 158 15% 20%;
+    --input: 158 15% 18%;
+    --ring: 158 45% 65%;
+    
+    --success: 142 65% 45%;
+    --success-foreground: 158 25% 8%;
+    
+    --warning: 45 85% 65%;
+    --warning-foreground: 158 25% 8%;
+
+    --gradient-islamic: linear-gradient(135deg, hsl(158 45% 65%), hsl(158 35% 55%));
+    --gradient-golden: linear-gradient(135deg, hsl(45 85% 65%), hsl(45 75% 75%));
+    --gradient-success: linear-gradient(135deg, hsl(142 65% 45%), hsl(142 55% 55%));
+    --gradient-bg: linear-gradient(180deg, hsl(158 25% 8%), hsl(158 20% 10%));
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: var(--gradient-bg);
+    font-feature-settings: "kern" 1;
+  }
+  
+  /* Islamic geometric patterns and animations */
+  .islamic-pattern {
+    background-image: radial-gradient(circle at 25% 25%, hsl(158 30% 95% / 0.3) 0%, transparent 50%),
+                      radial-gradient(circle at 75% 75%, hsl(45 50% 90% / 0.2) 0%, transparent 50%);
+  }
+  
+  .glow-effect {
+    box-shadow: var(--shadow-islamic), inset 0 1px 0 hsl(158 60% 25% / 0.1);
+  }
+  
+  .golden-glow {
+    box-shadow: var(--shadow-golden), inset 0 1px 0 hsl(45 85% 55% / 0.2);
+  }
+  
+  .success-glow {
+    box-shadow: var(--shadow-success), inset 0 1px 0 hsl(142 76% 36% / 0.2);
+  }
+}
