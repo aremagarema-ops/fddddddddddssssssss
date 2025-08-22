@@ -47,7 +47,7 @@ export function CompetitionHeader() {
           <p className="text-green-800 font-semibold text-center">
             🎯 معايير النجاح: 90 درجة فما فوق
           </p>
-        </p>
+        </div>
       </div>
     </div>
   )
